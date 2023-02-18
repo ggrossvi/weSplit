@@ -22,11 +22,11 @@ struct ContentView: View {
     var totalPerPerson: Double {
         let peopleCount = Double(numberOfPeople + 2)
         let tipSelection = Double(tipPercentage)
-
+        
         let tipValue = checkAmount / 100 * tipSelection
         let grandTotal = checkAmount + tipValue
         let amountPerPerson = grandTotal / peopleCount
-
+        
         return amountPerPerson
     }
     
@@ -36,8 +36,8 @@ struct ContentView: View {
             Form {
                 Section {
                     TextField("Amount", value: $checkAmount, format:
-                            .currency(code: Locale.current.currencyCode ?? "USD"))
-                            .keyboardType(.numbersAndPunctuation)
+                            .currency(code: Locale.current.currency?.identifier ?? "USD"))
+                    .keyboardType(.numbersAndPunctuation)
                     /* https://developer.apple.com/documentation/uikit/uikeyboardtype
                      https://www.hackingwithswift.com/forums/swiftui/textfield-text-has-no-member-keyboardtype/760
                      */
@@ -46,49 +46,57 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
-                    
-                    /*
-                     
-                     Section {
-                         TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                             .keyboardType(.decimalPad)
-
-                         Picker("Number of people", selection: $numberOfPeople) {
-                             ForEach(2 ..< 100) {
-                                 Text("\($0) people")
-                             }
-                         }
-                     }*/
                 }
-                
-                Section {
-                    
-                    Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
-                            Text($0, format: .percent)
-                        }
-                    }
-                    .pickerStyle(.segmented)
-                }  header: {
-                    Text("How much tip do you want to leave?")
-                }
-                
-                Section {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
-                    
-                }
-                
-                
             }
-            
-        }
-        .navigationTitle("WeSplit")
-    }
-    
-
-    struct ContentView_Previews: PreviewProvider {
-        static var previews: some View {
-            ContentView()
         }
     }
 }
+                    
+                /*
+                 
+                 Section {
+                 TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                 .keyboardType(.decimalPad)
+                 
+                 Picker("Number of people", selection: $numberOfPeople) {
+                 ForEach(2 ..< 100) {
+                 Text("\($0) people")
+                 }
+                 }
+                 }
+                 }
+                
+                 
+                 Section {
+                 
+                 Picker("Tip percentage", selection: $tipPercentage) {
+                 ForEach(tipPercentages, id: \.self) {
+                 Text($0, format: .percent)
+                 }
+                 }
+                 .pickerStyle(.segmented)
+                 }  header: {
+                 Text("How much tip do you want to leave?")
+                 }
+                 
+                 //                Section {
+                 //                    Text(totalPerPerson, format: .currency(code: Locale.current.currency?.identifier, "USD"))
+                 //
+                 //                }
+                 
+                 
+                 }
+                 
+                 }
+                 .navigationTitle("WeSplit")
+                 }
+                 
+                 
+                 struct ContentView_Previews: PreviewProvider {
+                 static var previews: some View {
+                 ContentView()
+                 }
+                 }
+                 
+                 }
+                 */
