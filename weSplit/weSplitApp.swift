@@ -3,7 +3,7 @@
 //  weSplit
 //
 //  Created by Gloria Villa on 12/31/22.
-//
+//  MARK: - Section 2
 
 import SwiftUI
 
